@@ -1,8 +1,10 @@
 footer {
-    background-color: orange;
-    padding: 10px;
+    max-width: 100%;
+    background-color: #f9b600;
 
     .footer_text {
-        background-color: red;
+        text-align: center;
+        font-size: 14px;
+        padding: 15px;
     }
 }

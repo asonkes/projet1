@@ -1,0 +1,28 @@
+header {
+    max-width: 100%;
+    background-color: #f9b600;
+
+    nav {
+        max-width: 100%;
+
+        .nav_ul {
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 25px;
+
+            .nav_li {
+
+                a {
+                    text-decoration: none;
+                    padding: 0 50px;
+                    font-size: 21px;
+                    font-weight: bold;
+                }
+            }
+        }
+
+
+    }
+}
