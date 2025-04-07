@@ -1,9 +1,17 @@
+@use '../mixins/mixins.scss';
+
 header {
     max-width: 100%;
+    position: relative;
     background-color: #f9b600;
 
     nav {
         max-width: 100%;
+
+        @include mixins.md {
+            visibility: hidden;
+            opacity: 0;
+        }
 
         .nav_ul {
             max-width: 100%;
@@ -13,6 +21,8 @@ header {
             padding: 25px;
 
             .nav_li {
+                max-width: 100%;
+                height: 100%;
 
                 a {
                     text-decoration: none;
@@ -22,7 +32,43 @@ header {
                 }
             }
         }
+    }
 
+    .icon_burger,
+    .icon_cross {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        font-size: 28px;
+        padding-right: 25px;
+        cursor: pointer;
+    }
 
+    .icon_burger {
+        visibility: hidden;
+        opacity: 0;
+
+        &.active {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        @include mixins.md {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    .icon_cross {
+        visibility: hidden;
+        opacity: 0;
+
+        &.active {
+            visibility: visible;
+            opacity: 1;
+        }
     }
 }
