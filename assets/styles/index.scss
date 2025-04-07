@@ -1,0 +1,14 @@
+@use '../styles/footer/footer.scss';
+@use '../styles/header/header.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 100%;
+    min-height: 100vh;
+    background-color: skyblue;
+}
