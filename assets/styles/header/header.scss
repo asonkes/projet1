@@ -17,8 +17,9 @@ header {
             max-width: 100%;
             display: flex;
             justify-content: center;
+            margin: auto;
             list-style: none;
-            padding: 25px;
+            padding: 20px;
 
             .nav_li {
                 max-width: 100%;
@@ -29,6 +30,7 @@ header {
                     padding: 0 50px;
                     font-size: 21px;
                     font-weight: bold;
+                    color: black;
                 }
             }
         }
@@ -67,8 +69,10 @@ header {
         opacity: 0;
 
         &.active {
-            visibility: visible;
-            opacity: 1;
+            @include mixins.md {
+                visibility: visible;
+                opacity: 1;
+            }
         }
     }
 }

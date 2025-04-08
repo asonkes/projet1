@@ -20,10 +20,54 @@ body {
 
 .session {
     max-width: 100%;
-    height: calc(100vh - 121px);
+    min-height: 100vh;
 }
 
 h1 {
     margin-top: 110px;
     text-align: center;
+}
+
+.form {
+    max-width: 350px;
+    margin: auto;
+
+    ul {
+        list-style: none;
+
+        li {
+            max-width: 100%;
+            background-color: #e47d7d;
+            margin: 10px 0 10px -30px;
+        }
+    }
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.align-items {
+    align-items: center;
+}
+
+.txt-align {
+    text-align: center;
+}
+
+.margin-top30 {
+    margin-top: 30px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.font-size20 {
+    font-size: 20px;
+}
+
+.txt-decoration {
+    text-decoration: underline;
 }
