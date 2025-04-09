@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Project;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;

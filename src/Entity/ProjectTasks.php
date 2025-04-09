@@ -6,7 +6,6 @@ use App\Entity\Task;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProjectTasksRepository;
 
-
 #[ORM\Entity(repositoryClass: ProjectTasksRepository::class)]
 class ProjectTasks
 {
