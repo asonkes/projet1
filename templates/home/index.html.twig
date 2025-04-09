@@ -8,12 +8,27 @@
 	<div class="session">
 		<h1>Page d'accueil</h1>
 
-		<div class="txt-align margin-top30 bold font-size20 txt-decoration">
-			Le nom de votre projet est :
-		</div>
+		{% if project is empty%}
+			<div class="txt-align margin-top30 bold font-size20">
+				<p>Nous sommes désolés, vous n'avez pas encore de projet créé.</p>
+			</div>
+
+		{% else %}
+
+			{% for project in project %}
+				<div class="txt-align margin-top30 bold font-size20">
+					<p class="txt-decoration">Le nom de votre projet est :</p>
+					<p>{{ project.name }}</p>
+					<a href=" {{ path('app_task')}}">Cliquer ici, pour voir la liste des tâches liées à votre produit.</a>
+				</div>
+			{% endfor %}
+
+		{% endif %}
 
 		<div class="txt-align margin-top30 bold font-size20 txt-decoration">
-			Voulez-vous créer un autre projet ?
+			<a href="{{ path('app_project')}}">
+				Voulez-vous créer un projet ou un autre projet ?
+			</a>
 		</div>
 	</div>
 {% endblock %}
