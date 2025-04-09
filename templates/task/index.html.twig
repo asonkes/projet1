@@ -7,5 +7,22 @@
 
 	<div class="session">
 		<h1>Liste des Tâches</h1>
+
+		{% if tasks is empty%}
+			<div class="txt-align margin-top30 bold font-size20">
+				<p>Nous sommes désolés, vous n'avez pas de tâches reliées à votre projet.</p>
+			</div>
+
+		{% else %}
+
+			{% for tasks in tasks %}
+				<div class="txt-align margin-top30 bold font-size20">
+					<p class="txt-decoration">Le nom de votre tâche est :</p>
+					<p>{{ tasks.name }}</p>
+				</div>
+			{% endfor %}
+
+		{% endif %}
+
 	</div>
 {% endblock %}
