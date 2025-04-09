@@ -21,10 +21,12 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
 
             // On doit récupérer un "user" aléatoire entre 1 et 10
             $user = $this->getReference('user_' . rand(1, 10), User::class);
-
             $project->setUser($user);
 
             $manager->persist($project);
+
+            // Ajout d'une référence pour récupérer chaque projet
+            $this->addReference('proj_' . $i, $project);
         }
 
         $manager->flush();

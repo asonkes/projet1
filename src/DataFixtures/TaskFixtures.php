@@ -18,6 +18,9 @@ class TaskFixtures extends Fixture
             $task->setName($faker->text(10));
 
             $manager->persist($task);
+
+            // Ajout d'une référence à chaque tâche pour la récupérer
+            $this->addReference('task_' . $i, $task);
         }
 
         $manager->flush();
