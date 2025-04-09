@@ -12,6 +12,11 @@
 body {
     max-width: 100%;
     min-height: 100vh;
+}
+
+.session_container {
+    max-width: 100%;
+    min-height: 100vh;
     background-image: url('../../public/images/bowl-palm-with-star-anises-cinnamon-sticks-around.jpg');
     background-repeat: no-repeat;
     background-position: center;
@@ -24,7 +29,7 @@ body {
 }
 
 h1 {
-    margin-top: 110px;
+    padding-top: 160px;
     text-align: center;
 }
 
@@ -70,4 +75,14 @@ h1 {
 
 .txt-decoration {
     text-decoration: underline;
+}
+
+.error403,
+.error404 {
+    max-width: 100%;
+    min-height: 100vh;
+    background-image: url('../../public/images/erreur-404-personnes-detenant-illustration-concept-nombres_114360-7923.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }

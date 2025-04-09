@@ -8,26 +8,26 @@ header {
     nav {
         max-width: 100%;
 
-        @include mixins.md {
-            visibility: hidden;
-            opacity: 0;
-        }
-
-        .nav_ul {
+        ul {
             max-width: 100%;
             display: flex;
             justify-content: center;
             margin: auto;
             list-style: none;
-            padding: 20px;
+            padding: 15px;
 
-            .nav_li {
+            @include mixins.md {
+                visibility: hidden;
+                opacity: 0;
+            }
+
+            li {
                 max-width: 100%;
                 height: 100%;
 
                 a {
                     text-decoration: none;
-                    padding: 0 50px;
+                    padding: 0 40px;
                     font-size: 21px;
                     font-weight: bold;
                     color: black;

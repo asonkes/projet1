@@ -9,9 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class TaskController extends AbstractController
 {
-    #[Route('/task', name: 'app_task')]
-    //#[Route('/task/{id}', name: 'app_task')]
-    public function index(ProjectRepository $projectRepository): Response
+    #[Route('/task/{id}', name: 'app_task')]
+    public function index(ProjectRepository $projectRepository, $id): Response
     {
         // On récupère l'utilisateur
         $user = $this->getUser();
@@ -21,25 +20,18 @@ final class TaskController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        // On récupère le projet de l'utilisateur par ID
-        //$project = $projectRepository->find($id);
-
-        // On récupère le projet de l'utilisateur
-        $project = $projectRepository->findBy(['user' => $user]);
+        // On récupère le projet de l'utilisateur par ID du projet qui est transmis à l'url
+        $project = $projectRepository->find($id);
 
         // On récupère les tâches des projets
         $tasks = [];
 
-        // On boucle pour sur chaque projet de l'utilisateur
-        foreach ($project as $project) {
+        // Ici, on boucle sur le projet sélectionné (on fait une sélection sur le projet existant)
+        $projectTasks = $project->getProjectTasks();
 
-            // Ici, on boucle sur le projet sélectionné (on fait une sélection sur le projet existant)
-            $projectTasks = $project->getProjectTasks();
-
-            // Et ici, on va récupérer l'id des tâches correspondantes en fonction du projet sélectionné plus haut
-            foreach ($projectTasks as $projectTask) {
-                $tasks[] = $projectTask->getTask();
-            }
+        // Et ici, on va récupérer l'id des tâches correspondantes en fonction du projet sélectionné plus haut
+        foreach ($projectTasks as $projectTask) {
+            $tasks[] = $projectTask->getTask();
         }
 
         return $this->render('task/index.html.twig', [

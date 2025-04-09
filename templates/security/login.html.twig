@@ -4,30 +4,34 @@
 {% endblock %}
 
 {% block body %}
-	<div class="session">
-		<form method="post" class="form flex align-items">
-			{% if error %}
-				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-			{% endif %}
 
-			<h1>Veuillez vous connecter</h1>
-			<label for="username" class="mt-3">E-mail</label>
-			<input type="email" class="mt-2" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
+	<div class="session_container">
+		<div class="session">
+			<form method="post" class="form flex align-items">
+				{% if error %}
+					<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
 
-			<label for="password" class="mt-3">Mot de Passe</label>
-			<input type="password" class="mt-2" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+				<h1>Veuillez vous connecter</h1>
+				<label for="username" class="mt-3">E-mail</label>
+				<input type="email" class="mt-2" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
 
-			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				<label for="password" class="mt-3">Mot de Passe</label>
+				<input type="password" class="mt-2" name="_password" id="password" class="form-control" autocomplete="current-password" required>
 
-			<button class="btn btn-md btn-primary mt-3" type="submit">
-				Connexion
-			</button>
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-			<div class="mt-3 txt-align">
-				<a href=" {{ path('app_register')}} ">
-					Vous n'êtes pas encore inscrit, Veuillez vous inscrire !
-				</a>
-			</div>
-		</form>
+				<button class="btn btn-md btn-primary mt-3" type="submit">
+					Connexion
+				</button>
+
+				<div class="mt-3 txt-align">
+					<a href=" {{ path('app_register')}} ">
+						Vous n'êtes pas encore inscrit, Veuillez vous inscrire !
+					</a>
+				</div>
+			</form>
+		</div>
 	</div>
+
 {% endblock %}
