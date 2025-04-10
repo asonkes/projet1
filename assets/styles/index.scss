@@ -87,8 +87,12 @@ h1 {
     background-size: contain;
 }
 
-.alert {
+.alert,
+.alert2 {
     position: absolute;
     min-width: 100%;
+}
 
+.alert2 {
+    margin-top: 60px;
 }
