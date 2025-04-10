@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Service\SendMailService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +16,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager, SendMailService $mail): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -31,7 +32,24 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // do anything else you need here, like send an email);
+            // C'est ici que l'on récupère le service "SendMailService" pour l'envoi de mails
+            // On envoie un mail
+            $mail->send(
+                // On reprend ici le 'from'
+                'no-reply@monsite.net',
+                // On reprend ici le 'to'
+                // Et pour ça on va rechercher l'information du mail de l'utilisateur
+                $user->getEmail(),
+                // On reprend ici le 'subject'
+                'Activation de votre compte sur le site e-commerce',
+                // On reprend ici le 'template'
+                // Car on va créer ...
+                'register',
+                // On reprend ici le 'context'
+                [
+                    'user' => $user
+                ]
+            );
 
             return $this->redirectToRoute('app_login');
         }

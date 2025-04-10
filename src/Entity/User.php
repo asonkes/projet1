@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity;;
 
 use App\Entity\Project;
 use Doctrine\ORM\Mapping as ORM;
@@ -41,6 +41,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\OneToMany(targetEntity: Project::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $projects;
+
+    #[ORM\Column(type: 'boolean')]
+    private $is_verified = false;
 
     public function __construct()
     {
@@ -147,6 +150,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $project->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsVerified(): ?bool
+    {
+        return $this->is_verified;
+    }
+
+    public function setIsVerified(bool $is_verified): self
+    {
+        $this->is_verified = $is_verified;
 
         return $this;
     }

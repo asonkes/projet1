@@ -8,6 +8,7 @@
     height: 100%;
     background-color: #f9b600;
     display: none;
+    z-index: 99999;
 
     &.active {
         @include mixins.md {

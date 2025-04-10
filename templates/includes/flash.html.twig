@@ -1,0 +1,14 @@
+{% for label, messages in app.flashes %}
+	{# Ici, on prend un message( = message) dans la liste des messages(messages) #}
+	{% for message in messages %}
+		{# Ici on passe le label, ça permet de choisir la couleur de l'alerte #}
+		<div class="alert alert-{{ label }} alert-dismissible" role="alert">
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			<div
+				class="alert-message">
+				{# raw ==> en Twig permet de pouvoir afficher le contenu d'une variable, comme du HTML #}
+				{{ message | raw }}
+			</div>
+		</div>
+	{% endfor %}
+{% endfor %}
