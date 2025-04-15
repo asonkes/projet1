@@ -9,22 +9,27 @@
 		<div class="session">
 			<h1>Page d'accueil</h1>
 
-			{% if project is empty%}
+			{# project.data à partir de la pagination #}
+			{% if project.data is empty %}
 				<div class="txt-align margin-top30 bold font-size20">
 					<p>Nous sommes désolés, vous n'avez pas encore de projet créé.</p>
 				</div>
-
 			{% else %}
-
-				{% for project in project %}
+				{# à partir de moment où l'on met un 'préfixe' car dans "projectRepository" = 'p' #}
+				{% for p in project.data %}
 					<div class="txt-align margin-top30 bold font-size20">
 						<p class="txt-decoration">Le nom de votre projet est :</p>
-						<p>{{ project.name }}</p>
-						<a href=" {{ path('app_task', { 'id': project.id }) }}">Cliquer ici, pour voir la liste des tâches liées à votre produit.</a>
+						<p>{{ p.name }}</p>
+						<a href=" {{ path('app_task', { 'id': p.id }) }}">Cliquer ici, pour voir la liste des tâches liées à votre produit.</a>
 					</div>
 				{% endfor %}
-
 			{% endif %}
+
+			{% set path = 'app_home' %}
+			{% set pages = project.pages %}
+			{# page en cours #}
+			{% set currentPage = project.page %}
+			{% include "includes/partials/_pagination.html.twig" %}
 
 			<div class="txt-align margin-top30 bold font-size20 txt-decoration">
 				<a href="{{ path('app_project_add')}}">

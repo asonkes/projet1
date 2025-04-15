@@ -1,0 +1,32 @@
+{% if pages > 1 %}
+	<nav class="justify-content margin-top30">
+		<ul
+			class="pagination">
+			{# classes "bootstrap" #}
+			{% if currentPage > 1 %}
+				<li class="page-item">
+					<a href="{{ path(path, { page: currentPage - 1 })}} " class="page-link">&lt;</a>
+				</li>
+			{% else %}
+				<li class="page-item disabled">
+					<a class="page-link">&lt;</a>
+				</li>
+			{% endif %}
+
+			{# Ca va être les numéros de page, donc il faut boucler = for #}
+			{% for page in 1..pages %}
+				<li class="page-item {{ (page == currentPage) ? 'active' : '' }}">
+					<a href="{{ path(path, { page: page })}} " class="page-link">{{ page }}</a>
+				</li>
+			{% endfor %}
+
+			<li class="page-item">
+				{% if currentPage < pages %}
+					<a href="{{ path(path, { page: currentPage + 1 })}} " class="page-link">&gt;</a>
+				{% else %}
+					<a class="page-link disabled">&gt;</a>
+				{% endif %}
+			</li>
+		</ul>
+	</nav>
+{% endif %}
