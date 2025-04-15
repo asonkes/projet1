@@ -1,0 +1,13 @@
+{{ form_start(projectForm)}}
+
+<div class="flex">
+	{{ form_label(projectForm.name)}}
+	{{ form_widget(projectForm.name)}}
+	{{ form_errors(projectForm.name)}}
+</div>
+
+{# <button type="submit" class="btn btn-md btn-primary mt-3">Ajouter</button> #}
+{# Ici on va créer la possibilité de pouvoir en fonction de la page changer le texte en ajouter/mmodifier/supprimer etc #}
+<button type="submit" class="btn btn-md btn-primary mt-3">{{ button_label | default('Ajouter')}}</button>
+
+{{ form_end(projectForm)}}

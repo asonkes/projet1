@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un projet
+{% endblock %}
+
+{% block body %}
+
+	<div class="session_container">
+		<div class="session">
+			<h1>Modifier un Projet</h1>
+			<div
+				class="form">
+
+				{# Ici on sait ajouter le label pour que celui-ci change #}
+				{% include "project/_form.html.twig" with {'button_label': 'Modifier'} %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

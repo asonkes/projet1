@@ -10,7 +10,10 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class ProjectsVoter extends Voter
 {
+    // Ici,on déclare la constante "edit" => alias lisible pour éviter de réécrire 'PROJECT_EDIT' partout
     const EDIT = 'PROJECT_EDIT';
+
+    // Ici on déclare la constante "delete" => alias lisible pour éviter de réécrire 'PROJECT_DELETE' partout
     const DELETE = 'PROJECT_DELETE';
 
     private $security;

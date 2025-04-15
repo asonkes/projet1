@@ -17,14 +17,14 @@ final class ProjectController extends AbstractController
         return $this->render('admin/project/index.html.twig');
     }
 
-    #[Route('ajout', name: 'add')]
+    #[Route('/ajout', name: 'add')]
     public function add(): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('admin/project/index.html.twig');
     }
 
-    #[Route('modifier/{id}', name: 'edit')]
+    #[Route('/modifier/{id}', name: 'edit')]
     public function edit(Project $project): Response
     {
         // On vérifie si l'utilisateur peut éditer avec le "voter"
@@ -33,7 +33,7 @@ final class ProjectController extends AbstractController
         return $this->render('admin/project/index.html.twig');
     }
 
-    #[Route('suppression/{id}', name: 'delete')]
+    #[Route('/suppression/{id}', name: 'delete')]
     public function delete(Project $project): Response
     {
         // On vérifie si l'utilisateur peut supprimer avec le "voter"

@@ -22,6 +22,14 @@
 				{% endfor %}
 			{% endif %}
 
+			<p class="txt-align margin-top30 bold font-size20 txt-decoration">
+				<a href=" {{ path('app_project_edit', {'id': project.id})}}">Désirez-vous modifier votre produit ???</a>
+			</p>
+
+			<p class="txt-align margin-top30 bold font-size20 txt-decoration">
+				<a href=" {{ path('app_project_delete', {'id': project.id})}}">Désirez-vous supprimer votre produit ???</a>
+			</p>
+
 		</div>
 	</div>
 
