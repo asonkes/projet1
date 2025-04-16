@@ -28,38 +28,46 @@ class ProjectRepository extends ServiceEntityRepository
     {
         $result = [];
 
-        // Et là se sont les projets en fonction de "User", donc 'p', 'u'
         // $query = requête
+        // 'p' est un alias pour 'projet' 
         $query = $this->createQueryBuilder('p')
+            // Ici on filtre les projets par utlisateur ('u')
             ->andWhere('p.user = :user')
             ->setParameter('user', $user)
+            // On ordonne les résultat par 'id' et affichage par ordre croissant
             ->orderBy('p.id', 'ASC')
-            // On force à avoir une page de minimum 1
+            // On force à avoir une page qui commence à 1
             ->setFirstResult(($page * $limit) - $limit)
+            // Combien d'éléments on récupère
             ->setMaxResults($limit)
+            // Je transforme mon "builder" en "requête"
             ->getQuery();
 
-        // méthode pour paginer    
+        // On va créer un objet "paginator" qui va gérer la pagination
+        // $uery = Et il récupère ta requête et compte en fonction des 'setFirstResult' et 'setMaxResult'
+        // True = force doctrine à compter aussi les résultats pour savoir combien il y a de pages    
         $paginator = new Paginator($query, true);
 
-        // Obtenir les résultats paginés
+        // Obtenir les résultats paginés (on transforme les résultats en un tableau PHP)
         $data = iterator_to_array($paginator);
 
-        // On vérifie qu'on a des données
+        // On vérifie qu'on a des données (si pas de résultat, on retourne un tableau vide)
         if (empty($data)) {
             return $result;
         }
 
-        // On calcule le nombre de pages
+        // On calcule le nombre total de pages
         // ceil ==> arrondit supérieur
+        // paginator->count() ==> total d'éléments
+        // $limit ==> combien on en montre par page 
         $pages = ceil($paginator->count() / $limit);
 
-        // On remplit le tableau
-        $result['data'] = $data;
-        $result['pages'] = $pages;
-        $result['page'] = $page;
-        $result['limit'] = $limit;
+        // On remplit le tableau "$result" avec toutes les infos utiles
+        $result['data'] = $data; // projets à afficher sur cette page
+        $result['pages'] = $pages; // le nombre total de pages
+        $result['page'] = $page; // la page actuelle
+        $result['limit'] = $limit; // combien de ^p^rojets par page
 
-        return $result;
+        return $result; // Tu renvoies tout au controlleur qui lui va passer à la vue (TWIG)
     }
 }

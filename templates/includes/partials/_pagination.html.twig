@@ -1,29 +1,34 @@
+{# Si + de 1 page, on affiche la pagination #}
 {% if pages > 1 %}
 	<nav class="justify-content margin-top30">
-		<ul
-			class="pagination">
+		<ul class="pagination">
 			{# classes "bootstrap" #}
-			{% if currentPage > 1 %}
-				<li class="page-item">
-					<a href="{{ path(path, { page: currentPage - 1 })}} " class="page-link">&lt;</a>
+			{# Si tu es sur la première page, on rend la flêche pour augmenter de page "active" #}
+				{% if currentPage > 1 %}
+					<li class="page-item"> <a href="{{ path(path, { page: currentPage - 1 })}} " class="page-link">&lt;</a>
 				</li>
 			{% else %}
+				{# Si tu es sur la première page, on rend la flêche pour diminuer de page "inactive" #}
 				<li class="page-item disabled">
 					<a class="page-link">&lt;</a>
 				</li>
 			{% endif %}
 
-			{# Ca va être les numéros de page, donc il faut boucler = for #}
+			{# Tu boucles de 1 à 'pages' pour afficher le nombre de pages à afficher #}
 			{% for page in 1..pages %}
+				{# Si "page == current¨Page", on ajoute la classe active  (mise en évidence du bouton) #}
 				<li class="page-item {{ (page == currentPage) ? 'active' : '' }}">
-					<a href="{{ path(path, { page: page })}} " class="page-link">{{ page }}</a>
+					{# Chaque page est cliquable grâce au 'path' #}
+					{# 'path' est le nom de la route que l'on définit dans le twig (là où la pagination à lieu) #}<a href="{{ path(path, { page: page })}} " class="page-link"> {{ page }}</a>
 				</li>
 			{% endfor %}
 
 			<li class="page-item">
 				{% if currentPage < pages %}
+					{# Si tu n'es pas sur la première page, on rend la flêche pour augmenter de page "active" #}
 					<a href="{{ path(path, { page: currentPage + 1 })}} " class="page-link">&gt;</a>
 				{% else %}
+					{# Si tu es sur la dernière page, on rend la flêche pour diminuer de page "inactive" #}
 					<a class="page-link disabled">&gt;</a>
 				{% endif %}
 			</li>

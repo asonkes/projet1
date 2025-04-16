@@ -21,15 +21,19 @@ final class HomeController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        // On va chercher le numéro de page dans l'url
-        // On met la requête -> $request
-        // Puis la requête du "repository" -> query
-        // et s'il y a pas de page, par défaut = 1
+        // On va chercher le numéro de page dans l'url (comme /?page=2)
+        // on fait passer la requete => query
+        // getInt() ==>sécurise et convertit la valeur en entier
+        // Si aucune page n'est définie dans l'URL, la valeur par défaut est '1'
         $page = $request->query->getInt('page', 1);
 
 
         // On va chercher la liste des projets des utlisateurs
         // $project = $projectRepository->findBy(['user' => $user]);
+
+        // $page ==> pour savoir quels projets afficher
+        // $user ==> pour ne récupérer que les projets de l'utilisateur connecté
+        // 2 ==> nombre de projets par page
         $project = $projectRepository->findProjectPaginated($page, $user, 2); // 2 est la limit
 
         return $this->render('home/index.html.twig', [
