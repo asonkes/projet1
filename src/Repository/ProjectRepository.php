@@ -51,11 +51,6 @@ class ProjectRepository extends ServiceEntityRepository
         // Obtenir les résultats paginés (on transforme les résultats en un tableau PHP)
         $data = iterator_to_array($paginator);
 
-        // On vérifie qu'on a des données (si pas de résultat, on retourne un tableau vide)
-        if (empty($data)) {
-            return $result;
-        }
-
         // On calcule le nombre total de pages
         // ceil ==> arrondit supérieur
         // paginator->count() ==> total d'éléments
