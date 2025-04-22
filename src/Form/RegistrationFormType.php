@@ -20,16 +20,7 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'E-mail',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez saisir votre mot de passe.'
-                    ]),
-                    new Regex([
-                        'pattern' => '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|be|net)$/',
-                        'message' => "Votre e-mail doit contenir un '@' et se terminer par .com, .be, .fr ou .net"
-                    ])
-                ]
+                'label' => 'E-mail'
             ])
             ->add('plainPassword', PasswordType::class, [
                 'label' => 'Mot de Passe',

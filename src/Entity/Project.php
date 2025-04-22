@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
 class Project
@@ -18,6 +19,13 @@ class Project
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
+    #[Assert\NotBlank(message: 'Le nom du projet ne peut pas être vide.')]
+    #[Assert\Length(
+        min: 5,
+        minMessage: 'Le titre du projet doit faire au moins {{ limit }} caractères.',
+        max: 200,
+        maxMessage: 'Le nom du projet ne peut pas contenir plus de {{ limit }} caractères.'
+    )]
     private ?string $name = null;
 
     #[ORM\ManyToOne(inversedBy: 'projects')]
